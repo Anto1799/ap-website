@@ -1,5 +1,5 @@
-* {
-    margin: 20px;
+*{
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
@@ -32,10 +32,11 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-left: 60px;
-    margin-right: 60px;
+    padding: 1rem 2rem;
+    margin: 20px 60px;
     border: 1px solid #000000;
     border-radius: 20px;
+    position: relative;
 }
 
 .logo {
@@ -64,33 +65,43 @@ body {
     color: var(--third-bg-color);
 }
 
+.navbar {
+    display: flex;
+}
+
 .navbar a {
-    font-size: 1.8 rem;
+    font-size: 1.6rem;
     color: var(--text-color);
     margin-left: 4rem;
     font-weight: 500;
-    font-size: 16px;
     transition: 0.2s ease;
 }
 
 .navbar a:hover,
-.navbar a:active {
+.navbar a.active {
     color: var(--second-text-color);
 }
 
-.home{
+.menu-icon {
+    display: none;
+    font-size: 2.4rem;
+    color: var(--second-text-color);
+    cursor: pointer;
+}
+
+.home {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     margin-bottom: 100px;
 }
 
-.home-content h1{
+.home-content h1 {
     font-size: 7rem;
     color: var(--second-text-color);
 }
 
-.home-content h3{
+.home-content h3 {
     font-size: 3rem;
     color: var(--second-text-color);
 }
@@ -104,8 +115,6 @@ body {
     transition: 0.4s ease-in-out;
 }
 
-
-
 .btn {
     display: inline-block;
     padding: 1rem 2.8rem;
@@ -117,8 +126,7 @@ body {
     font-weight: 600;
     transition: 0.3s ease-in-out;
     cursor: pointer;
-    border: 2px solid var(--bg-color);
-    border-color: var(--third-bg-color);
+    border: 2px solid var(--third-bg-color);
 }
 
 .btn:hover {
@@ -170,12 +178,6 @@ body {
     font-size: 2rem;
     color: var(--second-text-color);
     margin-top: 30px;
-}
-
-.aboutme-text .btn {
-    display: block;
-    width: fit-content;
-    margin: 20px auto 0;
 }
 
 .contact {
@@ -257,13 +259,13 @@ body {
     overflow: hidden;
     display: flex;
     margin: 0;
-    aspect-ratio: 3/4; /* Questo creerà box più alti che larghi */
+    aspect-ratio: 3/4;
 }
 
 .portfolio-box img {
     width: 100%;
-    height: 100%; /* Assicura che l'immagine riempia tutto il box */
-    object-fit: cover; /* Mantiene le proporzioni dell'immagine coprendo tutto lo spazio */
+    height: 100%;
+    object-fit: cover;
     transition: .5s ease;
 }
 
@@ -300,7 +302,7 @@ body {
     font-size: 1.6rem;
     color: var(--second-text-color);
     margin-bottom: 1.5rem;
-    max-width: 80%; /* Limita la larghezza del testo per una migliore leggibilità */
+    max-width: 80%;
 }
 
 .portfolio-layer .btn {
@@ -310,27 +312,6 @@ body {
     color: var(--third-bg-color);
     font-weight: bold;
     margin-top: 1rem;
-}
-
-@media (max-width: 768px) {
-    .portfolio-container {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
-
-    .portfolio-layer h4 {
-        font-size: 2.4rem;
-    }
-
-    .portfolio-layer p {
-        font-size: 1.4rem;
-    }
-}
-
-
-.portfolio-layer .btn {
-    margin: 0;
-    padding: .5rem 1.5rem;
-    font-size: 1.4rem;
 }
 
 .footer {
@@ -347,4 +328,45 @@ body {
     font-size: 1.4rem;
     color: var(--text-color);
     margin: 0; 
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        padding-top: 1rem;
+    }
+
+    .navbar.active {
+        display: flex;
+    }
+
+    .navbar a {
+        margin: 1rem 0;
+    }
+
+    .menu-icon {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        right: 2rem;
+    }
+
+    .portfolio-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .portfolio-layer h4 {
+        font-size: 2.4rem;
+    }
+
+    .portfolio-layer p {
+        font-size: 1.4rem;
+    }
 }
