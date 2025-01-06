@@ -126,52 +126,106 @@ body {
     box-shadow: 0 0 10px var(--third-bg-color);
 }
 
+.aboutme h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--second-text-color);
+    font-size: 5rem;
+}
 
+.aboutme .btn {
+    display: block;
+    width: fit-content;
+    margin: 20px auto 0;
+}
+
+.aboutme-text {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.aboutme-text p {
+    font-size: 1.8rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.aboutme-text strong {
+    color: var(--third-bg-color);
+    font-weight: 600;
+    display: inline-block;
+    margin: 0 -0.05em; 
+    padding: 0 0.05em; 
+}
+
+.aboutme-text em {
+    font-style: italic;
+    color: var(--second-text-color);
+}
+
+.aboutme-text p:last-of-type {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--second-text-color);
+    margin-top: 30px;
+}
+
+.aboutme-text .btn {
+    display: block;
+    width: fit-content;
+    margin: 20px auto 0;
+}
+
+.contact {
+    padding: 50px 0;
+}
 
 .contact h2 {
-    margin-left: 40%;
+    text-align: center;
     margin-bottom: 3rem;
     color: var(--second-text-color);
     font-size: 5rem;
 }
 
 .contact form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 3rem;
-    margin: 5rem auto;
+    max-width: 70rem;
+    margin: 1rem auto;
     text-align: center;
-
+    margin-bottom: 3rem;
 }
 
-.contact form .input-box {
+.contact form .input-row {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 
-.contact form .input-box input,
+.contact form .input-row input,
+.contact form input,
 .contact form textarea {
     width: 100%;
     padding: 1.5rem;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: var(--second-text-color);
     background-color: var(--second-bg-color);
-    border-radius: 2rem;
-    border: 2px solid var(--main-color);
-    margin: 1.5rem 0;
+    border-radius: 0.8rem;
+    margin: 0.7rem 0;
+}
+
+.contact form .input-row input {
+    width: 49%;
+}
+
+.contact form textarea {
     resize: none;
 }
 
-
-.sendmessage{
-    display: flex;
-    justify-content: center;
-    color: var(--text-color);
-
+.contact form .btn {
+    margin-top: 2rem;
+    cursor: pointer;
+    background-color: var(--third-bg-color);
+    color: var(--bg-color);
 }
-
-
-
 
