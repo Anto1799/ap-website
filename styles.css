@@ -231,6 +231,19 @@ body {
     color: var(--bg-color);
 }
 
+.error-message {
+    color: #ff0000;
+    font-size: 1.2rem;
+    display: block;
+    margin-top: 0.5rem;
+    visibility: hidden;
+}
+
+.input-box input.error,
+.input-group2 textarea.error {
+    border: 1px solid #ff0000;
+}
+
 .portfolio {
     padding: 50px 0;
 }
