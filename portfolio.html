@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antonio Perrotta - Portfolio</title>
+    <link rel="icon" href="https://img.icons8.com/dusk/64/administrator-male.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">Antonio Perrotta</a>
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="index.html#aboutme">About Me</a>
+            <a href="#" class="active">Portfolio</a>
+            <a href="index.html#contact">Contact Me</a>
+        </nav>
+    </header>
+
+    <section class="experience py-5">
+        <div class="container">
+            <h2 class="heading mb-5">Work <span>Experience</span></h2>
+            <div class="row">
+                <div class="col-12">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-content bg-dark text-white p-4 rounded shadow">
+                                <h3>Senior Blockchain Developer</h3>
+                                <h4>Company Name</h4>
+                                <p class="text-muted">2022 - Present</p>
+                                <p>Led development of smart contracts and DeFi protocols. Implemented security best practices and optimized gas efficiency.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-content bg-dark text-white p-4 rounded shadow">
+                                <h3>Blockchain Developer</h3>
+                                <h4>Another Company</h4>
+                                <p class="text-muted">2020 - 2022</p>
+                                <p>Developed and maintained blockchain applications using Solidity and Web3.js. Collaborated with cross-functional teams.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-content bg-dark text-white p-4 rounded shadow">
+                                <h3>Junior Developer</h3>
+                                <h4>Start-Up Name</h4>
+                                <p class="text-muted">2019 - 2020</p>
+                                <p>Started journey in blockchain development. Worked on various Web3 projects and smart contract development.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+        <h2 class="heading">My <span>Portfolio</span></h2>
+        <div class="portfolio-container">
+            <div class="portfolio-box">
+                <img src="images/portfolio/project1.jpg" alt="Project 1">
+                <div class="portfolio-layer">
+                    <h4>Project 1</h4>
+                    <p>Description of Project 1</p>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+            <div class="portfolio-box">
+                <img src="images/portfolio/project2.jpg" alt="Project 2">
+                <div class="portfolio-layer">
+                    <h4>Project 2</h4>
+                    <p>Description of Project 2</p>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+            <div class="portfolio-box">
+                <img src="images/portfolio/project3.jpg" alt="Project 3">
+                <div class="portfolio-layer">
+                    <h4>Project 3</h4>
+                    <p>Description of Project 3</p>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2023 Antonio Perrotta. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="javascript.js"></script>
+</body>
+</html>
