@@ -1,10 +1,36 @@
-(function() {
-    emailjs.init("1ZTZHKgqIvfywv9MT");
-})();
+if (document.getElementById('contact-form')) {
+    (function() {
+        emailjs.init("1ZTZHKgqIvfywv9MT");
+    })();
+}
 
 document.addEventListener('DOMContentLoaded', function() {
+    const menuIcon = document.querySelector('.menu-icon');
+    const navbar = document.querySelector('.navbar');
+
+    if (menuIcon) {
+        menuIcon.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navbar.classList.toggle('active');
+        });
+    }
+
+    document.addEventListener('click', function(e) {
+        if (navbar && !navbar.contains(e.target) && !menuIcon.contains(e.target)) {
+            navbar.classList.remove('active');
+        }
+    });
+
+    if (navbar) {
+        navbar.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navbar.classList.remove('active');
+            });
+        });
+    }
+
+
     const form = document.getElementById('contact-form');
-    
     if (form) {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -86,15 +112,4 @@ document.addEventListener('DOMContentLoaded', function() {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
     }
-});
-
-function toggleMenu() {
-    const navbar = document.querySelector('.navbar');
-    navbar.classList.toggle('active');
-}
-
-document.querySelectorAll('.navbar a').forEach(item => {
-    item.addEventListener('click', () => {
-        document.querySelector('.navbar').classList.remove('active');
-    });
 });
