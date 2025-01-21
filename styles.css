@@ -144,6 +144,39 @@ body {
     transition: 0.4s ease-in-out;
 }
 
+.social-icons {
+    margin-top: 2rem;
+}
+
+.social-icons a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+    background: var(--second-bg-color);
+    border-radius: 50%;
+    margin: 0 1rem;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.social-icons a:hover {
+    background: var(--third-bg-color);
+    transform: scale(1.1);
+}
+
+.social-icons i {
+    font-size: 2.4rem;
+    color: var(--second-text-color);
+}
+
+.social-icons a:hover i {
+    color: var(--bg-color);
+}
+
+
+
 .aboutme-text {
     max-width: 800px;
     margin: 0 auto;
@@ -394,6 +427,20 @@ body {
         z-index: 100;
     }
 
+    
+    .social-icons {
+        margin-top: 1.5rem;
+    }
+    
+    .social-icons a {
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+    
+    .social-icons i {
+        font-size: 2rem;
+    }
+    
     .timeline-content {
         width: 100%;
         margin-left: 0;
