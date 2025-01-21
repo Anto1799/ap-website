@@ -40,6 +40,7 @@ body {
 }
 
 .logo {
+    text-decoration: none;
     font-size: 2rem;
     color: var(--second-text-color);
     font-weight: 600;
@@ -58,6 +59,7 @@ body {
     cursor: pointer;
     transition: 0.3s ease;
     display: inline-block;
+    
 }
 
 .highlight:hover {
@@ -69,11 +71,13 @@ body {
 }
 
 .navbar a {
+    text-decoration: none;
     font-size: 1.6rem;
     color: var(--text-color);
     margin-left: 4rem;
     font-weight: 500;
     transition: 0.2s ease;
+
 }
 
 .navbar a:hover,
@@ -385,7 +389,7 @@ body {
     .menu-icon {
         display: block;
         position: absolute;
-        top: 1.5rem;
+        top: 0.5rem;
         right: 2rem;
         z-index: 100;
     }
