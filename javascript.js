@@ -63,6 +63,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const message = form.querySelector('[name="message"]');
         
         clearErrors();
+
+        form.setAttribute('novalidate', true);
         
         if (!name.value.trim()) {
             showError(name, 'name-error', 'Name is required');
