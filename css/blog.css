@@ -1,0 +1,241 @@
+
+:root {
+    --bg-color: #111111;
+    --second-bg-color: #2f2f2f96;
+    --third-bg-color: #00ffee;
+    --text-color: #ffffff85;
+    --second-text-color: #ffffff;
+}
+
+.blog-section {
+    padding: 4rem 6rem;
+    min-height: 100vh;
+    background: var(--bg-color);
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--second-text-color);
+    font-size: 5rem;
+}
+
+.heading span {
+    color: var(--third-bg-color);
+}
+
+.categories-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 3rem 0;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    background: var(--second-bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--third-bg-color);
+    padding: 0.8rem 2rem;
+    border-radius: 0.8rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.category-btn:hover,
+.category-btn.active {
+    background: var(--third-bg-color);
+    color: var(--bg-color);
+    transform: translateY(-2px);
+}
+
+.blog-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.blog-card {
+    background: var(--second-bg-color);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    border: 1px solid rgba(0, 255, 238, 0.1);
+    transition: all 0.3s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 255, 238, 0.1);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.category {
+    background: var(--third-bg-color);
+    color: var(--bg-color);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.date {
+    color: var(--text-color);
+    font-size: 1.2rem;
+}
+
+.card-content h3 {
+    color: var(--second-text-color);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.card-content p {
+    color: var(--text-color);
+    font-size: 1.4rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+}
+
+.x-icon {
+    width: 1.8rem;
+    height: 1.8rem;
+    fill: var(--second-text-color);
+    transition: all 0.3s ease;
+}
+
+.card-footer:hover .x-icon {
+    fill: var(--third-bg-color);
+}
+
+.view-link {
+    color: var(--third-bg-color);
+    text-decoration: none;
+    font-size: 1.4rem;
+    transition: color 0.3s ease;
+}
+
+.view-link:hover {
+    color: var(--second-text-color);
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 4rem;
+}
+
+.pagination-btn {
+    background: var(--second-bg-color);
+    color: var(--text-color);
+    border: 1px solid rgba(0, 255, 238, 0.1);
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pagination-btn:hover:not(:disabled),
+.pagination-btn.active {
+    background: var(--third-bg-color);
+    color: var(--bg-color);
+}
+
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.blog-card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@media (max-width: 1024px) {
+    .blog-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .blog-section {
+        padding: 2rem;
+    }
+
+    .heading {
+        font-size: 4rem;
+    }
+
+    .blog-container {
+        grid-template-columns: 1fr;
+    }
+
+    .card-content h3 {
+        font-size: 1.8rem;
+    }
+
+    .category-btn {
+        font-size: 1.4rem;
+        padding: 0.6rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .blog-section {
+        padding: 1.5rem;
+    }
+
+    .heading {
+        font-size: 3rem;
+    }
+
+    .categories-container {
+        gap: 1rem;
+    }
+
+    .category-btn {
+        font-size: 1.2rem;
+        padding: 0.5rem 1.2rem;
+    }
+
+    .card-content h3 {
+        font-size: 1.6rem;
+    }
+
+    .pagination-btn {
+        font-size: 1.2rem;
+        padding: 0.6rem 1.2rem;
+    }
+
+    .x-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
