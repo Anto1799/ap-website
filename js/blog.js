@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentPage = 1;
     let filteredPosts = [];
 
+    // Selettori per gli elementi del DOM
     const categoryButtons = document.querySelectorAll('.category-btn');
     const blogCards = document.querySelectorAll('.blog-card');
     const paginationContainer = document.querySelector('.pagination-container');
@@ -11,11 +12,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextButton = paginationContainer?.querySelector('button:last-child');
     const pageButtons = paginationContainer ? Array.from(paginationContainer.querySelectorAll('button')).slice(1, -1) : [];
 
+    // Highlight Cards Animation
+    const highlightCards = document.querySelectorAll('.highlight-section .card');
+    if(highlightCards.length) {
+        highlightCards.forEach((card, index) => {
+            setTimeout(() => {
+                card.style.opacity = '0';
+                card.style.animation = 'fadeIn 0.5s ease-out forwards';
+                card.style.animationDelay = `${index * 0.2}s`;
+            }, 100);
+        });
+    }
+
+    // Initialize blog functionality if cards exist
     if (blogCards.length) {
         filteredPosts = Array.from(blogCards);
         updatePagination();
         showPage(1);
 
+        // Category filtering
         categoryButtons.forEach(button => {
             button.addEventListener('click', () => {
                 currentPage = 1;
@@ -25,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
+        // Pagination navigation
         if (prevButton && nextButton) {
             prevButton.addEventListener('click', () => {
                 if (currentPage > 1) {
@@ -40,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
+        // Page number buttons
         pageButtons.forEach(button => {
             button.addEventListener('click', () => {
                 showPage(parseInt(button.textContent));
@@ -47,57 +64,26 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // News Slider
-    const newsContainer = document.querySelector('.news-container');
-    const newsCards = document.querySelectorAll('.news-container .news-card');
-    const sliderPrevBtn = document.querySelector('.prev-btn');
-    const sliderNextBtn = document.querySelector('.next-btn');
-    
-    if (newsContainer && newsCards.length) {
-        let currentSlideIndex = 0;
-        const cardWidth = newsCards[0].offsetWidth + 32; // width + gap
-        const totalSlides = newsCards.length;
-        
-        // Auto slide
-        let autoSlideInterval = setInterval(slideNext, 5000);
-        
-        function slideNext() {
-            currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
-            updateSlider();
-        }
-        
-        function slidePrev() {
-            currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
-            updateSlider();
-        }
-        
-        function updateSlider() {
-            newsContainer.style.transform = `translateX(-${currentSlideIndex * cardWidth}px)`;
-        }
-        
-        // Slider Event Listeners
-        sliderPrevBtn?.addEventListener('click', () => {
-            clearInterval(autoSlideInterval);
-            slidePrev();
-            autoSlideInterval = setInterval(slideNext, 5000);
+    // Lazy Loading per le immagini degli highlight
+    const highlightImages = document.querySelectorAll('.highlight-section img');
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                }
+                observer.unobserve(img);
+            }
         });
-        
-        sliderNextBtn?.addEventListener('click', () => {
-            clearInterval(autoSlideInterval);
-            slideNext();
-            autoSlideInterval = setInterval(slideNext, 5000);
-        });
-        
-        newsContainer.addEventListener('mouseenter', () => {
-            clearInterval(autoSlideInterval);
-        });
-        
-        newsContainer.addEventListener('mouseleave', () => {
-            autoSlideInterval = setInterval(slideNext, 5000);
-        });
-    }
+    });
 
-    // Blog Functions
+    highlightImages.forEach(img => {
+        imageObserver.observe(img);
+    });
+
+    // Filter posts by category
     function filterPosts(selectedButton) {
         categoryButtons.forEach(btn => btn.classList.remove('active'));
         selectedButton.classList.add('active');
@@ -118,6 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Show posts for current page
     function showPage(pageNumber) {
         currentPage = pageNumber;
         const start = (pageNumber - 1) * postsPerPage;
@@ -136,6 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updatePaginationButtons();
     }
 
+    // Update pagination state
     function updatePagination() {
         const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
 
@@ -153,6 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Update pagination button states
     function updatePaginationButtons() {
         pageButtons.forEach(button => {
             if (parseInt(button.textContent) === currentPage) {
@@ -164,4 +153,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         updatePagination();
     }
+
+    // Bootstrap Tooltips Initialization
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
 });
