@@ -123,6 +123,18 @@
     fill: var(--third-bg-color);
 }
 
+.custom-icon {
+    width: 10rem;
+    height: 3rem;
+    transition: all 0.3s ease;
+}
+
+.card-footer:hover .custom-icon {
+
+    filter: brightness(1.2);
+}
+
+
 .view-link {
     color: var(--third-bg-color);
     text-decoration: none;
@@ -235,6 +247,11 @@
     }
 
     .x-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .custom-icon {
         width: 1.5rem;
         height: 1.5rem;
     }
