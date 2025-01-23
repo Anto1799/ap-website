@@ -1,51 +1,103 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Blog Pagination and Filtering
     const postsPerPage = 3; 
     let currentPage = 1;
     let filteredPosts = [];
 
-   
     const categoryButtons = document.querySelectorAll('.category-btn');
     const blogCards = document.querySelectorAll('.blog-card');
     const paginationContainer = document.querySelector('.pagination-container');
-    const prevButton = paginationContainer.querySelector('button:first-child');
-    const nextButton = paginationContainer.querySelector('button:last-child');
-    const pageButtons = Array.from(paginationContainer.querySelectorAll('button')).slice(1, -1);
+    const prevButton = paginationContainer?.querySelector('button:first-child');
+    const nextButton = paginationContainer?.querySelector('button:last-child');
+    const pageButtons = paginationContainer ? Array.from(paginationContainer.querySelectorAll('button')).slice(1, -1) : [];
 
+    if (blogCards.length) {
+        filteredPosts = Array.from(blogCards);
+        updatePagination();
+        showPage(1);
 
-    filteredPosts = Array.from(blogCards);
-    updatePagination();
-    showPage(1);
-
-
-    categoryButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            currentPage = 1;
-            filterPosts(button);
-            updatePagination();
-            showPage(1);
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                currentPage = 1;
+                filterPosts(button);
+                updatePagination();
+                showPage(1);
+            });
         });
-    });
 
+        if (prevButton && nextButton) {
+            prevButton.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    showPage(currentPage - 1);
+                }
+            });
 
-    prevButton.addEventListener('click', () => {
-        if (currentPage > 1) {
-            showPage(currentPage - 1);
+            nextButton.addEventListener('click', () => {
+                const maxPages = Math.ceil(filteredPosts.length / postsPerPage);
+                if (currentPage < maxPages) {
+                    showPage(currentPage + 1);
+                }
+            });
         }
-    });
 
-    nextButton.addEventListener('click', () => {
-        const maxPages = Math.ceil(filteredPosts.length / postsPerPage);
-        if (currentPage < maxPages) {
-            showPage(currentPage + 1);
-        }
-    });
-
-    pageButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            showPage(parseInt(button.textContent));
+        pageButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                showPage(parseInt(button.textContent));
+            });
         });
-    });
+    }
 
+    // News Slider
+    const newsContainer = document.querySelector('.news-container');
+    const newsCards = document.querySelectorAll('.news-container .news-card');
+    const sliderPrevBtn = document.querySelector('.prev-btn');
+    const sliderNextBtn = document.querySelector('.next-btn');
+    
+    if (newsContainer && newsCards.length) {
+        let currentSlideIndex = 0;
+        const cardWidth = newsCards[0].offsetWidth + 32; // width + gap
+        const totalSlides = newsCards.length;
+        
+        // Auto slide
+        let autoSlideInterval = setInterval(slideNext, 5000);
+        
+        function slideNext() {
+            currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+            updateSlider();
+        }
+        
+        function slidePrev() {
+            currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+        
+        function updateSlider() {
+            newsContainer.style.transform = `translateX(-${currentSlideIndex * cardWidth}px)`;
+        }
+        
+        // Slider Event Listeners
+        sliderPrevBtn?.addEventListener('click', () => {
+            clearInterval(autoSlideInterval);
+            slidePrev();
+            autoSlideInterval = setInterval(slideNext, 5000);
+        });
+        
+        sliderNextBtn?.addEventListener('click', () => {
+            clearInterval(autoSlideInterval);
+            slideNext();
+            autoSlideInterval = setInterval(slideNext, 5000);
+        });
+        
+        newsContainer.addEventListener('mouseenter', () => {
+            clearInterval(autoSlideInterval);
+        });
+        
+        newsContainer.addEventListener('mouseleave', () => {
+            autoSlideInterval = setInterval(slideNext, 5000);
+        });
+    }
+
+    // Blog Functions
     function filterPosts(selectedButton) {
         categoryButtons.forEach(btn => btn.classList.remove('active'));
         selectedButton.classList.add('active');
@@ -95,12 +147,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        prevButton.disabled = currentPage === 1;
-        nextButton.disabled = currentPage === totalPages || totalPages === 0;
+        if (prevButton && nextButton) {
+            prevButton.disabled = currentPage === 1;
+            nextButton.disabled = currentPage === totalPages || totalPages === 0;
+        }
     }
 
     function updatePaginationButtons() {
- 
         pageButtons.forEach(button => {
             if (parseInt(button.textContent) === currentPage) {
                 button.classList.add('active');
