@@ -1,11 +1,9 @@
-// blog.js
 document.addEventListener('DOMContentLoaded', function() {
-    // Configurazione
-    const postsPerPage = 3; // Numero di post per pagina
+    const postsPerPage = 3; 
     let currentPage = 1;
     let filteredPosts = [];
 
-    // Seleziona elementi DOM
+   
     const categoryButtons = document.querySelectorAll('.category-btn');
     const blogCards = document.querySelectorAll('.blog-card');
     const paginationContainer = document.querySelector('.pagination-container');
@@ -13,12 +11,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextButton = paginationContainer.querySelector('button:last-child');
     const pageButtons = Array.from(paginationContainer.querySelectorAll('button')).slice(1, -1);
 
-    // Inizializza
+
     filteredPosts = Array.from(blogCards);
     updatePagination();
     showPage(1);
 
-    // Event Listeners per i bottoni categoria
+
     categoryButtons.forEach(button => {
         button.addEventListener('click', () => {
             currentPage = 1;
@@ -28,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Event Listeners per la paginazione
+
     prevButton.addEventListener('click', () => {
         if (currentPage > 1) {
             showPage(currentPage - 1);
@@ -48,15 +46,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Funzioni
     function filterPosts(selectedButton) {
-        // Aggiorna stato bottoni
         categoryButtons.forEach(btn => btn.classList.remove('active'));
         selectedButton.classList.add('active');
 
         const selectedCategory = selectedButton.textContent.trim();
 
-        // Filtra i post
         if (selectedCategory === 'All') {
             filteredPosts = Array.from(blogCards);
         } else {
@@ -66,7 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Nascondi tutti i post
         blogCards.forEach(card => {
             card.style.display = 'none';
         });
@@ -77,13 +71,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const start = (pageNumber - 1) * postsPerPage;
         const end = start + postsPerPage;
 
-        // Nascondi tutti i post
         blogCards.forEach(card => {
             card.style.display = 'none';
             card.style.animation = 'none';
         });
 
-        // Mostra solo i post della pagina corrente
         filteredPosts.slice(start, end).forEach(card => {
             card.style.display = 'block';
             card.style.animation = 'fadeIn 0.5s ease-out';
@@ -95,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function updatePagination() {
         const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
 
-        // Aggiorna numeri pagina
         pageButtons.forEach((button, index) => {
             if (index < totalPages) {
                 button.style.display = 'block';
@@ -104,13 +95,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Aggiorna stato prev/next
         prevButton.disabled = currentPage === 1;
         nextButton.disabled = currentPage === totalPages || totalPages === 0;
     }
 
     function updatePaginationButtons() {
-        // Aggiorna stato active dei bottoni pagina
+ 
         pageButtons.forEach(button => {
             if (parseInt(button.textContent) === currentPage) {
                 button.classList.add('active');

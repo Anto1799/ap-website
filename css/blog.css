@@ -1,15 +1,10 @@
-:root {
-    --bg-color: #111111;
-    --second-bg-color: #2f2f2f96;
-    --third-bg-color: #00ffee;
-    --text-color: #ffffff85;
-    --second-text-color: #ffffff;
-}
+/* Import stili comuni */
+@import 'styles.css';
 
+/* Blog Section */
 .blog-section {
     padding: 4rem 6rem;
     min-height: 100vh;
-    background: var(--bg-color);
 }
 
 /* Heading Container e Info Icon */
@@ -21,13 +16,7 @@
     margin-bottom: 3rem;
 }
 
-.heading {
-    text-align: center;
-    color: var(--second-text-color);
-    font-size: 5rem;
-    margin: 0;
-}
-
+/* Rimuovi .heading base perché è già in styles.css */
 .heading span {
     color: var(--third-bg-color);
 }
@@ -168,17 +157,6 @@
     padding-top: 1.5rem;
 }
 
-.x-icon {
-    width: 1.8rem;
-    height: 1.8rem;
-    fill: var(--second-text-color);
-    transition: all 0.3s ease;
-}
-
-.card-footer:hover .x-icon {
-    fill: var(--third-bg-color);
-}
-
 .custom-icon {
     width: 10rem;
     height: 3rem;
@@ -254,10 +232,6 @@
         padding: 2rem;
     }
 
-    .heading {
-        font-size: 4rem;
-    }
-
     .info-icon i {
         font-size: 1.8rem;
     }
@@ -291,10 +265,6 @@
         padding: 1.5rem;
     }
 
-    .heading {
-        font-size: 3rem;
-    }
-
     .info-icon i {
         font-size: 1.6rem;
     }
@@ -321,11 +291,6 @@
     .pagination-btn {
         font-size: 1.2rem;
         padding: 0.6rem 1.2rem;
-    }
-
-    .x-icon {
-        width: 1.5rem;
-        height: 1.5rem;
     }
 
     .custom-icon {
