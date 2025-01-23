@@ -4,25 +4,13 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentPage = 1;
     let filteredPosts = [];
 
-    // Selettori per gli elementi del DOM
+    // DOM Selectors
     const categoryButtons = document.querySelectorAll('.category-btn');
     const blogCards = document.querySelectorAll('.blog-card');
     const paginationContainer = document.querySelector('.pagination-container');
     const prevButton = paginationContainer?.querySelector('button:first-child');
     const nextButton = paginationContainer?.querySelector('button:last-child');
     const pageButtons = paginationContainer ? Array.from(paginationContainer.querySelectorAll('button')).slice(1, -1) : [];
-
-    // Highlight Cards Animation
-    const highlightCards = document.querySelectorAll('.highlight-section .card');
-    if(highlightCards.length) {
-        highlightCards.forEach((card, index) => {
-            setTimeout(() => {
-                card.style.opacity = '0';
-                card.style.animation = 'fadeIn 0.5s ease-out forwards';
-                card.style.animationDelay = `${index * 0.2}s`;
-            }, 100);
-        });
-    }
 
     // Initialize blog functionality if cards exist
     if (blogCards.length) {
@@ -63,25 +51,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-
-    // Lazy Loading per le immagini degli highlight
-    const highlightImages = document.querySelectorAll('.highlight-section img');
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                if (img.dataset.src) {
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                }
-                observer.unobserve(img);
-            }
-        });
-    });
-
-    highlightImages.forEach(img => {
-        imageObserver.observe(img);
-    });
 
     // Filter posts by category
     function filterPosts(selectedButton) {
