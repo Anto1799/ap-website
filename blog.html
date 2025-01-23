@@ -24,7 +24,12 @@
     </header>
 
     <section class="blog-section">
-        <h2 class="heading">Tech <span>Insights</span></h2>
+        <div class="heading-container">
+            <h2 class="heading">Tech <span>Insights</span></h2>
+            <div class="info-icon" data-tooltip="A curated collection of tech articles and insights about Blockchain, Web3, and emerging technologies that I find interesting and worth sharing.">
+                <i class="bi bi-info-circle"></i>
+            </div>
+        </div>
         
         <div class="categories-container">
             <button class="category-btn active">All</button>
@@ -33,27 +38,6 @@
         </div>
 
         <div class="blog-container">
-
-                        <!-- Example Post 
-                        <div class="blog-card">
-                            <div class="card-header">
-                                <span class="category">Blockchain</span>
-                                <span class="date">Dec 15, 2023</span>
-                            </div>
-                            <div class="card-content">
-                                <h3>Post Title</h3>
-                                <p>Short preview of the post or tweet...</p>
-                            </div>
-                            <div class="card-footer">
-                                <svg class="x-icon" viewBox="0 0 24 24">
-                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                                </svg>
-                                <a href="#" class="view-link">View Original</a>
-                            </div>
-                        </div>
-                         You can repeat this blog-card structure for more posts -->
-
-
             <div class="blog-card">
                 <div class="card-header">
                     <span class="category">Blockchain</span>
@@ -64,7 +48,7 @@
                     <p>New Breed of AI Agents Ready to Redefine Web3</p>
                 </div>
                 <div class="card-footer">
-                    <img src="assets/images/blog/full-multiversx-logo.svg" class="custom-icon" alt="custom icon">
+                    <img src="assets/images/blog/full-multiversx-logo.svg" class="custom-icon" alt="MultiversX logo">
                     <a href="https://multiversx.com/blog/blockchain-ai-agents-eliza-os" class="view-link">View Original</a>
                 </div>
             </div>
@@ -84,6 +68,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="javascript.js"></script>
+    <script src="js/blog.js"></script>
 </body>
 </html>
