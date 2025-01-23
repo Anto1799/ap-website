@@ -1,7 +1,12 @@
 /* Import stili comuni */
 @import 'styles.css';
 
-/* Blog Section */
+body {
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y pinch-zoom;
+}
+
 .blog-section {
     padding: 4rem 6rem;
     min-height: 100vh;
