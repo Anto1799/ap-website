@@ -26,14 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
             date: '2024-01-20',
             twitterLink: 'https://x.com/Antonio02137195/status/1882742927992181062'
         },
-        {
-            categories: ['Blockchain', 'Finance'],
-            title: 'President Trump speach about crypto',
-            content: 'President Donald Trump at Davos said he will make the United States the “World Capital of Artificial Intelligence and Crypto.”',
-            date: '2024-01-20',
-            twitterLink: 'https://x.com/Antonio02137195/status/1882742927992181062'
-        },
-        
+
         // Add more news items
     ];
 
