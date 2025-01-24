@@ -37,7 +37,6 @@
     transition: 0.4s ease-in-out;
 }
 
-/* Social Icons */
 .social-icons {
     margin-top: 2rem;
 }
@@ -69,7 +68,6 @@
     color: var(--bg-color);
 }
 
-/* About Me Section */
 .aboutme-text {
     max-width: 800px;
     margin: 0 auto;
@@ -109,7 +107,6 @@
     width: fit-content;
 }
 
-/* Contact Section */
 .contact {
     padding: 50px 0;
 }
@@ -153,7 +150,6 @@
     border: 1px solid #ff0000;
 }
 
-/* Media Queries specifiche per Home */
 @media (max-width: 768px) {
     .home {
         flex-direction: column;

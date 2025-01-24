@@ -9,7 +9,6 @@
     font-family: "Poppins", sans-serif;
 }
 
-/* Variables */
 :root {
     --bg-color: #111111;
     --second-bg-color: #2f2f2f96;
@@ -18,7 +17,6 @@
     --second-text-color: #ffffff;
 }
 
-/* Base HTML Settings */
 html {
     font-size: 60%;
     overflow-x: hidden;
@@ -29,7 +27,6 @@ body {
     color: var(--text-color);
 }
 
-/* Header & Navigation */
 .header {
     background: #000000;
     display: flex;
@@ -76,7 +73,6 @@ body {
     cursor: pointer;
 }
 
-/* Common Button Style */
 .btn {
     display: inline-block;
     padding: 1rem 2.8rem;
@@ -96,7 +92,6 @@ body {
     box-shadow: 0 0 10px var(--third-bg-color);
 }
 
-/* Common Heading Styles */
 .heading {
     text-align: center;
     margin-bottom: 3rem;
@@ -104,7 +99,6 @@ body {
     font-size: 5rem;
 }
 
-/* Footer */
 .footer {
     padding: 20px 0;
     text-align: center;
@@ -121,7 +115,6 @@ body {
     margin: 0;
 }
 
-/* Common Media Queries */
 @media (max-width: 768px) {
     .header {
         flex-direction: column;

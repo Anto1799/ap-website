@@ -1,9 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize tooltips
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
-    // Initialize AOS
     AOS.init({
         duration: 800,
         offset: 100,
@@ -17,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const hidePostsBtn = document.getElementById('hide-posts');
     let visiblePosts = newsPerPage;
 
-    // Sample news data
     const newsData = [
         {
             categories: ['Blockchain', 'Finance'],
@@ -27,23 +24,18 @@ document.addEventListener('DOMContentLoaded', function() {
             twitterLink: 'https://x.com/Antonio02137195/status/1882742927992181062'
         },
 
-        // Add more news items
     ];
 
-    // Filter functionality
     const filterBtns = document.querySelectorAll('.filter-btn');
     let currentFilter = 'all';
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Update active state
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             
-            // Update filter
             currentFilter = btn.getAttribute('data-category');
             
-            // Show all posts that were previously loaded
             loadNews(false, visiblePosts);
         });
     });
@@ -95,12 +87,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         AOS.refresh();
 
-        // Update buttons visibility
         loadMoreBtn.style.display = limit >= filteredNews.length ? 'none' : 'inline-block';
         hidePostsBtn.style.display = limit > newsPerPage ? 'inline-block' : 'none';
     }
 
-    // Hide posts button
     hidePostsBtn.addEventListener('click', () => {
         visiblePosts = newsPerPage;
         loadNews(false, visiblePosts);
@@ -112,6 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
         loadNews(false, visiblePosts);
     });
 
-    // Initial load
+
     loadNews();
 });
