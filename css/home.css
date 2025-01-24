@@ -1,6 +1,3 @@
-@import 'styles.css';
-
-/* Home Section Styles */
 .home {
     display: flex;
     justify-content: space-evenly;

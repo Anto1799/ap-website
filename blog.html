@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Insights - Antonio Perrotta</title>
+    <title>Antonio Perrotta - Blog</title>
     <link rel="icon" href="https://img.icons8.com/dusk/64/administrator-male.png" type="image/png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/blog.css">
 </head>
-
 <body>
     <header class="header">
         <a href="index.html" class="logo">Antonio Perrotta</a>
@@ -25,56 +24,36 @@
         </nav>
     </header>
 
-    <section class="blog-section">
-        <div class="heading-container">
-            <h2 class="heading">Tech <span>Insights</span></h2>
-            <div class="info-icon"
-                data-tooltip="A curated collection of tech articles and insights about Blockchain, Web3, and emerging technologies that I find interesting and worth sharing.">
-                <i class="bi bi-info-circle"></i>
+    <main class="blog-container">
+        <section class="latest-news">
+            <div class="heading-container">
+                <h2 class="heading">Latest News 
+                    <i class="bi bi-info-circle info-icon" data-bs-toggle="tooltip" data-bs-placement="right" title="Here I share significant news about blockchain, finance, and other topics I find particularly relevant."></i>
+                </h2>
             </div>
-        </div>
-
-        <div class="categories-container">
-            <button class="category-btn active">All</button>
-            <button class="category-btn">Blockchain</button>
-            <button class="category-btn">Tech News</button>
-            <button class="category-btn">Finance</button>
-            <button class="category-btn">Random Bits</button>
-        </div>
-
-        <div class="blog-container">
-            <div class="blog-card">
-                <div class="card-header">
-                    <span class="category">Blockchain</span>
-                    <span class="date">Gen 22, 2025</span>
-                </div>
-                <div class="card-content">
-                    <h3>AI Wave On MultiversX</h3>
-                    <p>New Breed of AI Agents Ready to Redefine Web3</p>
-                </div>
-                <div class="card-footer">
-                    <img src="assets/images/blog/full-multiversx-logo.svg" class="custom-icon" alt="MultiversX logo">
-                    <a href="https://multiversx.com/blog/blockchain-ai-agents-eliza-os" class="view-link">View Original</a>
-                </div>
+            <div class="filter-container text-center mb-4">
+                <button class="filter-btn active" data-category="all">All</button>
+                <button class="filter-btn" data-category="Blockchain">Blockchain</button>
+                <button class="filter-btn" data-category="Finance">Finance</button>
+                <button class="filter-btn" data-category="Tech">Tech</button>
             </div>
-        </div>
-
-        <div class="pagination-container">
-            <button class="pagination-btn" disabled>Previous</button>
-            <button class="pagination-btn active">1</button>
-            <button class="pagination-btn">2</button>
-            <button class="pagination-btn">3</button>
-            <button class="pagination-btn">Next</button>
-        </div>
-    </section>
+            <div class="row g-4" id="news-grid">
+                <!-- News cards will be dynamically added here -->
+            </div>
+            <div class="text-center mt-5">
+                <button id="load-more" class="btn custom-btn">Load More</button>
+                <button id="hide-posts" class="btn custom-btn ms-3" style="display: none;">Hide</button>
+            </div>
+        </section>
+    </main>
 
     <footer class="footer">
         <p>&copy; 2023 Antonio Perrotta. All rights reserved.</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/blog.js"></script>
     <script src="js/main.js"></script>
 </body>
-
 </html>

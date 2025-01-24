@@ -1,131 +1,117 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Blog Pagination and Filtering
-    const postsPerPage = 3; 
-    let currentPage = 1;
-    let filteredPosts = [];
+    // Initialize tooltips
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
-    // DOM Selectors
-    const categoryButtons = document.querySelectorAll('.category-btn');
-    const blogCards = document.querySelectorAll('.blog-card');
-    const paginationContainer = document.querySelector('.pagination-container');
-    const prevButton = paginationContainer?.querySelector('button:first-child');
-    const nextButton = paginationContainer?.querySelector('button:last-child');
-    const pageButtons = paginationContainer ? Array.from(paginationContainer.querySelectorAll('button')).slice(1, -1) : [];
-
-    // Initialize blog functionality if cards exist
-    if (blogCards.length) {
-        filteredPosts = Array.from(blogCards);
-        updatePagination();
-        showPage(1);
-
-        // Category filtering
-        categoryButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                currentPage = 1;
-                filterPosts(button);
-                updatePagination();
-                showPage(1);
-            });
-        });
-
-        // Pagination navigation
-        if (prevButton && nextButton) {
-            prevButton.addEventListener('click', () => {
-                if (currentPage > 1) {
-                    showPage(currentPage - 1);
-                }
-            });
-
-            nextButton.addEventListener('click', () => {
-                const maxPages = Math.ceil(filteredPosts.length / postsPerPage);
-                if (currentPage < maxPages) {
-                    showPage(currentPage + 1);
-                }
-            });
-        }
-
-        // Page number buttons
-        pageButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                showPage(parseInt(button.textContent));
-            });
-        });
-    }
-
-    // Filter posts by category
-    function filterPosts(selectedButton) {
-        categoryButtons.forEach(btn => btn.classList.remove('active'));
-        selectedButton.classList.add('active');
-
-        const selectedCategory = selectedButton.textContent.trim();
-
-        if (selectedCategory === 'All') {
-            filteredPosts = Array.from(blogCards);
-        } else {
-            filteredPosts = Array.from(blogCards).filter(card => {
-                const cardCategory = card.querySelector('.category').textContent;
-                return cardCategory === selectedCategory;
-            });
-        }
-
-        blogCards.forEach(card => {
-            card.style.display = 'none';
-        });
-    }
-
-    // Show posts for current page
-    function showPage(pageNumber) {
-        currentPage = pageNumber;
-        const start = (pageNumber - 1) * postsPerPage;
-        const end = start + postsPerPage;
-
-        blogCards.forEach(card => {
-            card.style.display = 'none';
-            card.style.animation = 'none';
-        });
-
-        filteredPosts.slice(start, end).forEach(card => {
-            card.style.display = 'block';
-            card.style.animation = 'fadeIn 0.5s ease-out';
-        });
-
-        updatePaginationButtons();
-    }
-
-    // Update pagination state
-    function updatePagination() {
-        const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
-
-        pageButtons.forEach((button, index) => {
-            if (index < totalPages) {
-                button.style.display = 'block';
-            } else {
-                button.style.display = 'none';
-            }
-        });
-
-        if (prevButton && nextButton) {
-            prevButton.disabled = currentPage === 1;
-            nextButton.disabled = currentPage === totalPages || totalPages === 0;
-        }
-    }
-
-    // Update pagination button states
-    function updatePaginationButtons() {
-        pageButtons.forEach(button => {
-            if (parseInt(button.textContent) === currentPage) {
-                button.classList.add('active');
-            } else {
-                button.classList.remove('active');
-            }
-        });
-
-        updatePagination();
-    }
-
-    // Bootstrap Tooltips Initialization
-    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl);
+    // Initialize AOS
+    AOS.init({
+        duration: 800,
+        offset: 100,
+        once: true
     });
+
+    let currentPage = 1;
+    const newsPerPage = 6;
+    const newsGrid = document.getElementById('news-grid');
+    const loadMoreBtn = document.getElementById('load-more');
+    const hidePostsBtn = document.getElementById('hide-posts');
+    let visiblePosts = newsPerPage;
+
+    // Sample news data
+    const newsData = [
+        {
+            categories: ['Blockchain', 'Finance'],
+            title: 'President Trump speach about crypto',
+            content: 'President Donald Trump at Davos said he will make the United States the “World Capital of Artificial Intelligence and Crypto.”',
+            date: '2024-01-20',
+            twitterLink: 'https://x.com/Antonio02137195/status/1882742927992181062'
+        },
+        
+        // Add more news items
+    ];
+
+    // Filter functionality
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    let currentFilter = 'all';
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update active state
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Update filter
+            currentFilter = btn.getAttribute('data-category');
+            
+            // Show all posts that were previously loaded
+            loadNews(false, visiblePosts);
+        });
+    });
+
+    function createNewsCard(news, index) {
+        const delay = (index % newsPerPage) * 100;
+        return `
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="${delay}">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="category-container">
+                            ${news.categories.map(cat => `<span class="category-badge">${cat}</span>`).join(' ')}
+                        </div>
+                        <h3 class="card-title">${news.title}</h3>
+                        <p class="card-text">${news.content}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-footer-content">
+                            <span class="post-date">${formatDate(news.date)}</span>
+                            <a href="${news.twitterLink}" class="social-link" target="_blank">
+                                <i class="bi bi-twitter-x"></i>
+                                View on X
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    function formatDate(dateString) {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString('en-US', options);
+    }
+
+    function loadNews(append = false, limit = newsPerPage) {
+        const filteredNews = currentFilter === 'all' 
+            ? newsData 
+            : newsData.filter(news => news.categories.includes(currentFilter));
+
+        const newsToShow = filteredNews.slice(0, limit);
+        const newsHTML = newsToShow.map((news, index) => createNewsCard(news, index)).join('');
+        
+        if (append) {
+            newsGrid.insertAdjacentHTML('beforeend', newsHTML);
+        } else {
+            newsGrid.innerHTML = newsHTML;
+        }
+
+        AOS.refresh();
+
+        // Update buttons visibility
+        loadMoreBtn.style.display = limit >= filteredNews.length ? 'none' : 'inline-block';
+        hidePostsBtn.style.display = limit > newsPerPage ? 'inline-block' : 'none';
+    }
+
+    // Hide posts button
+    hidePostsBtn.addEventListener('click', () => {
+        visiblePosts = newsPerPage;
+        loadNews(false, visiblePosts);
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+
+    loadMoreBtn.addEventListener('click', () => {
+        visiblePosts += newsPerPage;
+        loadNews(false, visiblePosts);
+    });
+
+    // Initial load
+    loadNews();
 });
